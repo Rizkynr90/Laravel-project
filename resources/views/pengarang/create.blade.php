@@ -16,7 +16,7 @@ Halaman Create
                     <form action="{{route('pengarang.store')}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="">Nama Pengaraang</label>
+                            <label for="">Nama Pengarang</label>
                             <input type="text" class="form-control" name="nama" required>
                         </div>
                         <div class="form-group">
@@ -38,4 +38,6 @@ Halaman Create
         </div>
     </div>
 </div>
+<center><a class="btn btn-primary" href="{{ route('pengarang.index') }}">List Data Pengarang</a></center>
+
 @endsection

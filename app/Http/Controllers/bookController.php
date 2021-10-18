@@ -15,9 +15,9 @@ class bookController extends Controller
      */
     public function index()
     {
-       $buku = book::all();
-       $pengarang = pengarang::all();
-       return view('book.index', compact('buku', 'pengarang'));
+        $buku = book::all();
+        $pengarang = pengarang::all();
+        return view('book.index', compact('buku', 'pengarang'));
     }
 
     /**
@@ -27,8 +27,7 @@ class bookController extends Controller
      */
     public function create()
     {
-        $judul = 'Ngoding';
-        return view('book.create', compact('judul'));
+        return view('book.create');
     }
 
     /**
@@ -39,7 +38,13 @@ class bookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book =  new book();
+        $book->pengarang_id = $request->id;
+        $book->nama_buku = $request->nama;
+        $book->jumlah_halaman = $request->jumhal;
+        $book->translate_judul_buku = $request->translate;
+        $book->save();
+        return redirect()->route('book.index');
     }
 
     /**
@@ -48,9 +53,9 @@ class bookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($judul)
+    public function show($id)
     {
-        return view('book.show', compact('judul'));
+        return view('book.show');
     }
 
     /**
@@ -59,9 +64,9 @@ class bookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($judul)
+    public function edit($id)
     {
-        return view('book.edit', compact('judul'));
+        return view('book.edit');
     }
 
     /**
