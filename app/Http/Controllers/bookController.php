@@ -27,7 +27,8 @@ class bookController extends Controller
      */
     public function create()
     {
-        return view('book.create');
+        $pengarang = pengarang::all();
+        return view('book.create', compact('pengarang'));
     }
 
     /**
@@ -39,7 +40,7 @@ class bookController extends Controller
     public function store(Request $request)
     {
         $book =  new book();
-        $book->pengarang_id = $request->id;
+        $book->pengarang_id = $request->pengarang_id;
         $book->nama_buku = $request->nama;
         $book->jumlah_halaman = $request->jumhal;
         $book->translate_judul_buku = $request->translate;

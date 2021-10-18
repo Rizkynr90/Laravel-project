@@ -5,21 +5,23 @@ Halaman Create
 @endsection
 
 @section('content')
-<div class="container">
+<a class="btn btn-primary" href="{{ route('book.index') }}">List Data Buku</a>
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    Tambah Data Buku
+                <div class="card-header bg-primary text-center">
+                    <h3>Penambahan Data Buku</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('pengarang.store')}}" method="post">
+                    <form action="{{route('book.store')}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="">Nama Pengarang</label>
-                            <select name="id" class="form-control" required>
-                                @foreach ($buku as $data)
-                                    <option value="{{ $data['id'] }}">{{ $data['nama_pengarang'] }}</option>
+                            <select name="pengarang_id" class="form-control" required>
+                                <option value=""></option>
+                                @foreach ($pengarang as $data)
+                                    <option value="{{$data['id']}}">{{$data['nama_pengarang']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -47,6 +49,5 @@ Halaman Create
     </div>
 </div>
 
-<center><a class="btn btn-primary" href="{{ route('book.index') }}">List Data Buku</a></center>
 
 @endsection

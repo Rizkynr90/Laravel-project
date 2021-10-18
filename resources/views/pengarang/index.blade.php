@@ -3,11 +3,14 @@
 Halaman Index
 @endsection
 @section('content')
-
-<div class="container ml-4">
+<a class="btn btn-primary" href="{{ route('pengarang.create')}}">Tambah Data Pengarang</a>
+<div class="container ml-4 mt-3">
 <table class="table table-striped">
-
+    @php
+        $no = 1;
+    @endphp
     <tr>
+        <th>No</th>
         <th>ID Pengarang</th>
         <th>Nama Pengarang</th>
         <th>Email</th>
@@ -16,6 +19,7 @@ Halaman Index
     </tr>
     @foreach ($pengarang as $data)
     <tr>
+        <td>{{ $no++ }}</td>
         <td>{{ $data->id }}</td>
         <td>{{ $data->nama_pengarang }}</td>
         <td>{{ $data->email }}</td>
@@ -26,10 +30,7 @@ Halaman Index
             <button class="btn btn-danger">Delete</button>|
         </td>
     </tr>
-
     @endforeach
   </table>
-  <center><a class="btn btn-primary" href="{{ route('pengarang.create')}}">Tambah Data Pengarang</a></center>
-
 </div>
 @endsection
