@@ -3,7 +3,7 @@
 Halaman Index
 @endsection
 @section('content')
-<a class="btn btn-primary" href="{{ route('pengarang.create')}}">Tambah Data Pengarang</a>
+<center><a class="btn btn-primary" href="{{ route('pengarang.create')}}">Tambah Data Pengarang</a></center>
 <div class="container ml-4 mt-3">
 <table class="table table-striped">
     @php
@@ -25,9 +25,16 @@ Halaman Index
         <td>{{ $data->email }}</td>
         <td>{{ $data->telp }}</td>
         <td>
-            <button class="btn btn-success">Edit</button>|
-            <button class="btn btn-warning">Show</button>|
-            <button class="btn btn-danger">Delete</button>|
+            <a href="{{ route('pengarang.edit', $data->id) }}" class="btn btn-success">Edit</a>
+            <a href="{{ route('pengarang.show', $data->id) }}" class="btn btn-warning">Show</a>
+            <br>
+            <form action="{{ route('pengarang.destroy', $data->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">
+                    Delete
+                </button>
+            </form>
         </td>
     </tr>
     @endforeach

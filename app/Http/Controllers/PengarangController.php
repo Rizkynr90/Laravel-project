@@ -50,9 +50,10 @@ class PengarangController extends Controller
      * @param  \App\Models\pengarang  $pengarang
      * @return \Illuminate\Http\Response
      */
-    public function show(pengarang $pengarang)
+    public function show($id)
     {
-        //
+        $pengarang = pengarang::findOrFail($id);
+        return view('pengarang.show', compact('pengarang'));
     }
 
     /**
@@ -61,9 +62,10 @@ class PengarangController extends Controller
      * @param  \App\Models\pengarang  $pengarang
      * @return \Illuminate\Http\Response
      */
-    public function edit(pengarang $pengarang)
+    public function edit($id)
     {
-        //
+        $pengarang = pengarang::findOrFail($id);
+        return view('pengarang.edit', compact('pengarang'));
     }
 
     /**
@@ -73,9 +75,14 @@ class PengarangController extends Controller
      * @param  \App\Models\pengarang  $pengarang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pengarang $pengarang)
+    public function update(Request $request, $id)
     {
-        //
+        $pengarang = pengarang::findOrFail($id);
+        $pengarang->nama_pengarang = $request->nama;
+        $pengarang->email = $request->email;
+        $pengarang->telp = $request->telp;
+        $pengarang->save();
+        return redirect()->route('pengarang.index');
     }
 
     /**
@@ -84,8 +91,9 @@ class PengarangController extends Controller
      * @param  \App\Models\pengarang  $pengarang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pengarang $pengarang)
+    public function destroy($id)
     {
-        //
+        pengarang::findOrFail($id)->delete();
+        return redirect()->route('pengarang.index');
     }
 }
